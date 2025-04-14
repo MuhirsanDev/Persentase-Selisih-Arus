@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator Selisih Persentase Arus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f4f8;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Hitung Selisih Persentase</h2>
+    <label for="nilaiHarapan">Nilai Harapan (A):</label>
+    <input type="number" id="nilaiHarapan" placeholder="Misal: 60">
+
+    <label for="nilaiAktual">Nilai Aktual (A):</label>
+    <input type="number" id="nilaiAktual" placeholder="Misal: 59.9">
+
+    <button onclick="hitungSelisih()">Hitung</button>
+
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+    function hitungSelisih() {
+      const harapan = parseFloat(document.getElementById('nilaiHarapan').value);
+      const aktual = parseFloat(document.getElementById('nilaiAktual').value);
+      const hasilDiv = document.getElementById('hasil');
+
+      if (isNaN(harapan) || isNaN(aktual) || harapan === 0) {
+        hasilDiv.innerText = "Masukkan nilai yang valid dan pastikan nilai harapan tidak nol.";
+        return;
+      }
+
+      const selisih = Math.abs(aktual - harapan);
+      const persentase = (selisih / harapan) * 100;
+      hasilDiv.innerText = `Selisih persentase: ${persentase.toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
